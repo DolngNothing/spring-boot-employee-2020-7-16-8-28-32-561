@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyData {
-    private List<Company> companies=new ArrayList<>();
+    private final List<Company> companies=new ArrayList<>();
 
     public CompanyData() {
         this.companies.add(new Company(1,"ali",1));

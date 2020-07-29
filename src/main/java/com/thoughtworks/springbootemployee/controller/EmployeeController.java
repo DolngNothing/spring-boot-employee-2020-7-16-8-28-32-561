@@ -1,6 +1,5 @@
 package com.thoughtworks.springbootemployee.controller;
 
-import com.thoughtworks.springbootemployee.model.Company;
 import com.thoughtworks.springbootemployee.model.Employee;
 import com.thoughtworks.springbootemployee.model.EmployeeData;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +12,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/employees")
 public class EmployeeController {
     private static final EmployeeData employeeData = new EmployeeData();
+    public static final String SUCCESS = "success";
+    public static final String FAIL = "fail";
 
     @GetMapping
     public List<Employee> getAllEmployee(@RequestParam(name = "page", required = false) Integer page,
@@ -35,17 +36,16 @@ public class EmployeeController {
     public Employee getEmployeeByEmployeeId(@PathVariable int employeeId) {
         return employeeData.getEmployees().stream().filter(employee -> {
             return employeeId == employee.getId();
-        }).
-                findFirst().orElse(null);
+        }).findFirst().orElse(null);
     }
 
     @PostMapping
     public String addEmployee(@RequestBody Employee employee){
         if(employee!=null){
             employeeData.getEmployees().add(employee);
-            return "success";
+            return SUCCESS;
         }
-        return "fail";
+        return FAIL;
     }
 
     @PutMapping("/{employeeId}")
@@ -56,9 +56,9 @@ public class EmployeeController {
 
         if(employee!=null&&modifyEmployee!=null){
             employeeData.getEmployees().set(employeeData.getEmployees().indexOf(employee),modifyEmployee);
-            return "success";
+            return SUCCESS;
         }
-        return "fail";
+        return FAIL;
     }
 
     @DeleteMapping("/{employeeId}")
@@ -69,9 +69,9 @@ public class EmployeeController {
 
         if(deleteEmployee!=null){
             employeeData.getEmployees().remove(deleteEmployee);
-            return "success";
+            return SUCCESS;
         }
-        return "fail";
+        return FAIL;
     }
 
 
