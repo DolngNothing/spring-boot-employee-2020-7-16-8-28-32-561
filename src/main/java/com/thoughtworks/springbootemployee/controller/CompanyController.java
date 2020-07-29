@@ -26,7 +26,6 @@ public class CompanyController {
 
     @GetMapping("/{companyId}/employees")
     public List<Employee> getEmplyeesByCompanyId(@PathVariable int companyId) {
-        initEmplyeesData(companyId);
         Company result = companyData.getCompanies().stream().filter(company -> {
             return company.getId() == companyId;
         }).findFirst().orElse(null);
@@ -41,13 +40,7 @@ public class CompanyController {
         }).findFirst().orElse(null);
     }
 
-    public void initEmplyeesData(int companyId) {
-        Company result = companyData.getCompanies().stream().filter(company -> {
-            return company.getId() == companyId;
-        }).findFirst().orElse(null);
-        assert result != null;
-        result.setEmployees(employeeData.getEmployees().subList(0, 3));
-    }
+
     // todo 返回数据
     @PostMapping
     public String addCompany(@RequestBody Company company) {

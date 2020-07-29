@@ -5,6 +5,7 @@ import java.util.List;
 
 public class CompanyData {
     private final List<Company> companies=new ArrayList<>();
+    private final EmployeeData employeeData=new EmployeeData();
 
     public CompanyData() {
         this.companies.add(new Company(1,"ali"));
@@ -14,6 +15,8 @@ public class CompanyData {
         this.companies.add(new Company(5,"oocl"));
         this.companies.add(new Company(6,"yy"));
         this.companies.add(new Company(7,"meituan"));
+        this.companies.get(0).setEmployees(employeeData.getEmployees().subList(0,3));
+        this.companies.get(1).setEmployees(employeeData.getEmployees().subList(3,6));
     }
 
     public List<Company> getCompanies() {
