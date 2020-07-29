@@ -1,11 +1,11 @@
 package com.thoughtworks.springbootemployee.model;
+
 import java.util.List;
 
 public class Company {
     private int id;
     private List<Employee> employees;
     private String companyName;
-    //todo update
     private int employeesNumber;
 
     public Company() {

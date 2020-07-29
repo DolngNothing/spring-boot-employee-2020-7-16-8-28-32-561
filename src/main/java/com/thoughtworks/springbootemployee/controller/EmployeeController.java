@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-    private static final EmployeeData employeeData = new EmployeeData();
     public static final String SUCCESS = "success";
     public static final String FAIL = "fail";
+    private static final EmployeeData employeeData = new EmployeeData();
 
     @GetMapping
     public List<Employee> getAllEmployee(@RequestParam(name = "page", required = false) Integer page,
@@ -40,8 +40,8 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public String addEmployee(@RequestBody Employee employee){
-        if(employee!=null){
+    public String addEmployee(@RequestBody Employee employee) {
+        if (employee != null) {
             employeeData.getEmployees().add(employee);
             return SUCCESS;
         }
@@ -49,25 +49,25 @@ public class EmployeeController {
     }
 
     @PutMapping("/{employeeId}")
-    public String modifyEmployeeByEmployeeId(@PathVariable int employeeId,@RequestBody Employee modifyEmployee){
+    public String modifyEmployeeByEmployeeId(@PathVariable int employeeId, @RequestBody Employee modifyEmployee) {
         Employee employee = employeeData.getEmployees().stream().filter(findEmployee -> {
             return findEmployee.getId() == employeeId;
         }).findFirst().orElse(null);
 
-        if(employee!=null&&modifyEmployee!=null){
-            employeeData.getEmployees().set(employeeData.getEmployees().indexOf(employee),modifyEmployee);
+        if (employee != null && modifyEmployee != null) {
+            employeeData.getEmployees().set(employeeData.getEmployees().indexOf(employee), modifyEmployee);
             return SUCCESS;
         }
         return FAIL;
     }
 
     @DeleteMapping("/{employeeId}")
-    public String deleteEmployeeByEmployeeId(@PathVariable int employeeId){
+    public String deleteEmployeeByEmployeeId(@PathVariable int employeeId) {
         Employee deleteEmployee = employeeData.getEmployees().stream().filter(employee -> {
             return employee.getId() == employeeId;
         }).findFirst().orElse(null);
 
-        if(deleteEmployee!=null){
+        if (deleteEmployee != null) {
             employeeData.getEmployees().remove(deleteEmployee);
             return SUCCESS;
         }

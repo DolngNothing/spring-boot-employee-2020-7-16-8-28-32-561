@@ -11,15 +11,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/companies")
 public class CompanyController {
-    private static final CompanyData companyData = new CompanyData();
-    private static final EmployeeData employeeData = new EmployeeData();
     public static final String SUCCESS = "success";
     public static final String FAIL = "fail";
+    private static final CompanyData companyData = new CompanyData();
+    private static final EmployeeData employeeData = new EmployeeData();
 
     @GetMapping
     public List<Company> getAllCompany(@RequestParam(name = "page", required = false) Integer page, @RequestParam(name = "pageSize", required = false) Integer pageSize) {
         if (page != null && pageSize != null) {
-            return companyData.getCompanies().subList(--page*pageSize, ++page*pageSize );
+            return companyData.getCompanies().subList(--page * pageSize, ++page * pageSize);
         }
         return companyData.getCompanies();
     }
@@ -66,14 +66,14 @@ public class CompanyController {
         }
         return FAIL;
     }
-    // todo shan yuan gong
+
     @DeleteMapping("/{companyId}")
-    public List<Employee> deleteCompanyByCompanyId(@PathVariable int companyId){
+    public List<Employee> deleteCompanyByCompanyId(@PathVariable int companyId) {
         Company deleteCompany = companyData.getCompanies().stream().filter(company -> {
             return company.getId() == companyId;
         }).findFirst().orElse(null);
 
-        if(deleteCompany!=null){
+        if (deleteCompany != null) {
             deleteCompany.getEmployees().forEach(employee -> {
                 companyData.getCompanies().remove(employee);
             });
