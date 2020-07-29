@@ -3,24 +3,23 @@ import java.util.List;
 
 public class Company {
     private int id;
-    private List<Employee> Employees;
+    private List<Employee> employees;
     private String companyName;
     //todo update
-
     private int employeesNumber;
 
     public Company() {
     }
 
-    public Company(int id, String companyName, int employeesNumber) {
+    public Company(int id, String companyName) {
         this.id = id;
         this.companyName = companyName;
-        this.employeesNumber = employeesNumber;
     }
 
-    public Company(int id, List<Employee> Employees) {
+    public Company(int id, List<Employee> employees) {
         this.id = id;
-        this.Employees = Employees;
+        this.employees = employees;
+        this.setEmployeesNumber(employees.size());
     }
 
     public int getId() {
@@ -32,11 +31,12 @@ public class Company {
     }
 
     public List<Employee> getEmployees() {
-        return Employees;
+        return employees;
     }
 
-    public void setEmployees(List<Employee> Employees) {
-        this.Employees = Employees;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+        this.setEmployeesNumber(employees.size());
     }
 
     public String getCompanyName() {

@@ -7,13 +7,13 @@ public class CompanyData {
     private final List<Company> companies=new ArrayList<>();
 
     public CompanyData() {
-        this.companies.add(new Company(1,"ali",1));
-        this.companies.add(new Company(2,"tx",2));
-        this.companies.add(new Company(3,"hw",3));
-        this.companies.add(new Company(4,"zj",3));
-        this.companies.add(new Company(5,"oocl",3));
-        this.companies.add(new Company(6,"yy",3));
-        this.companies.add(new Company(7,"meituan",3));
+        this.companies.add(new Company(1,"ali"));
+        this.companies.add(new Company(2,"tx"));
+        this.companies.add(new Company(3,"hw"));
+        this.companies.add(new Company(4,"zj"));
+        this.companies.add(new Company(5,"oocl"));
+        this.companies.add(new Company(6,"yy"));
+        this.companies.add(new Company(7,"meituan"));
     }
 
     public List<Company> getCompanies() {
