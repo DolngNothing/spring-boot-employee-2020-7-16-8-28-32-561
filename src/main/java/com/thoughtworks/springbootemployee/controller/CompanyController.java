@@ -19,7 +19,7 @@ public class CompanyController {
     @GetMapping
     public List<Company> getAllCompany(@RequestParam(name = "page", required = false) Integer page, @RequestParam(name = "pageSize", required = false) Integer pageSize) {
         if (page != null && pageSize != null) {
-            return companyData.getCompanies().subList(--page, --pageSize);
+            return companyData.getCompanies().subList(--page*pageSize, ++page*pageSize );
         }
         return companyData.getCompanies();
     }
@@ -48,7 +48,7 @@ public class CompanyController {
         assert result != null;
         result.setEmployees(employeeData.getEmployees().subList(0, 3));
     }
-
+    // todo 返回数据
     @PostMapping
     public String addCompany(@RequestBody Company company) {
         if (company != null) {
@@ -73,6 +73,7 @@ public class CompanyController {
         }
         return FAIL;
     }
+    // todo shan yuan gong
     @DeleteMapping("/{companyId}")
     public String deleteCompanyByCompanyId(@PathVariable int companyId){
         Company deleteCompany = companyData.getCompanies().stream().filter(company -> {

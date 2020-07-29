@@ -5,6 +5,8 @@ public class Company {
     private int id;
     private List<Employee> Employees;
     private String companyName;
+    //todo update
+
     private int employeesNumber;
 
     public Company() {
