@@ -75,16 +75,19 @@ public class CompanyController {
     }
     // todo shan yuan gong
     @DeleteMapping("/{companyId}")
-    public String deleteCompanyByCompanyId(@PathVariable int companyId){
+    public List<Employee> deleteCompanyByCompanyId(@PathVariable int companyId){
         Company deleteCompany = companyData.getCompanies().stream().filter(company -> {
             return company.getId() == companyId;
         }).findFirst().orElse(null);
 
         if(deleteCompany!=null){
+            deleteCompany.getEmployees().forEach(employee -> {
+                companyData.getCompanies().remove(employee);
+            });
             companyData.getCompanies().remove(deleteCompany);
-            return SUCCESS;
+            return employeeData.getEmployees();
         }
-        return FAIL;
+        return null;
     }
 
 }
