@@ -7,14 +7,14 @@ import com.thoughtworks.springbootemployee.model.EmployeeData;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/companies")
 public class CompanyController {
     private static final CompanyData companyData = new CompanyData();
     private static final EmployeeData employeeData = new EmployeeData();
+    public static final String SUCCESS = "success";
+    public static final String FAIL = "fail";
 
     @GetMapping
     public List<Company> getAllCompany(@RequestParam(name = "page", required = false) Integer page, @RequestParam(name = "pageSize", required = false) Integer pageSize) {
@@ -55,9 +55,9 @@ public class CompanyController {
             companyData.getCompanies().add(company);
         }
         if (companyData.getCompanies().contains(company)) {
-            return "success";
+            return SUCCESS;
         }
-        return "fail";
+        return FAIL;
     }
 
     @PutMapping("/{companyId}")
@@ -68,10 +68,10 @@ public class CompanyController {
             }).findFirst().orElse(null);
             if (modifyCompany != null) {
                 companyData.getCompanies().set(companyData.getCompanies().indexOf(modifyCompany), company);
-                if (companyData.getCompanies().contains(company)) return "success";
+                if (companyData.getCompanies().contains(company)) return SUCCESS;
             }
         }
-        return "fail";
+        return FAIL;
     }
     @DeleteMapping("/{companyId}")
     public String deleteCompanyByCompanyId(@PathVariable int companyId){
@@ -81,9 +81,9 @@ public class CompanyController {
 
         if(deleteCompany!=null){
             companyData.getCompanies().remove(deleteCompany);
-            return "success";
+            return SUCCESS;
         }
-        return "fail";
+        return FAIL;
     }
 
 }
